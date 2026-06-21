@@ -1,0 +1,83 @@
+aid: centml
+name: CentML
+review:
+  question: Does CentML expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: true
+  asyncapiScopeNote: |
+    Per updated API Evangelist scope (2026-05-29), HTTP Server-Sent Events
+    (SSE) is in-scope for AsyncAPI modeling. An AsyncAPI 2.6 document was
+    created at asyncapi/centml-asyncapi.yml describing the chat completion
+    SSE stream (POST /chat/completions with stream=true). No WebSocket
+    surface was modeled because none is documented.
+findings:
+  summary: |
+    CentML does not publish a documented public WebSocket API. The CentML
+    serverless inference platform is OpenAI-compatible and exposes only REST
+    (HTTPS) endpoints under https://api.centml.com/openai/v1, with a separate
+    REST control-plane (platform) API under https://api.centml.com for
+    managing deployments and clusters. Streaming for chat completions is
+    delivered as HTTP Server-Sent Events (SSE) via the `stream: true`
+    parameter on the REST endpoint; SSE is a one-way HTTP streaming transport
+    and is not WebSocket. No realtime, bidirectional WebSocket (ws:// or
+    wss://) endpoint is documented for inference or platform management.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.centml.com/openai/v1
+      documented: true
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.centml.com
+      documented: true
+      note: Platform (control-plane) API for deployments and clusters.
+    - protocol: SSE
+      scheme: https
+      note: Server-Sent Events delivered over the same REST chat completions endpoint when stream=true. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in CentML's serverless or platform documentation as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.centml.com/openai/v1/chat/completions
+    - POST https://api.centml.com/openai/v1/completions
+    - GET  https://api.centml.com/openai/v1/models
+    - GET  https://api.centml.com/openai/v1/models/{model}
+    - GET  https://api.centml.com/deployments
+    - POST https://api.centml.com/deployments/inference
+    - GET  https://api.centml.com/deployments/inference/{deployment_id}
+    - PUT  https://api.centml.com/deployments/inference
+    - POST https://api.centml.com/deployments/compute
+    - GET  https://api.centml.com/deployments/status/{deployment_id}
+    - PUT  https://api.centml.com/deployments/status/{deployment_id}
+    - GET  https://api.centml.com/deployments/logs/{deployment_id}
+    - GET  https://api.centml.com/clusters
+    - GET  https://api.centml.com/capacity
+sources:
+  - url: https://docs.centml.ai/apps/serverless
+    type: Documentation
+    note: Serverless endpoints are OpenAI-compatible REST; chat completions example uses POST to /openai/v1/chat/completions with Bearer token.
+  - url: https://docs.centml.ai/apps/inference
+    type: Documentation
+    note: Dedicated deployments are exposed as HTTPS endpoints; managed via the platform control-plane API. No WebSocket mentioned.
+  - url: https://docs.centml.ai/clients/sdk
+    type: APIReference
+    note: Python SDK wraps the platform REST API (deployments, clusters); Bearer access-token authenticated.
+  - url: https://github.com/CentML/platform_api_python_client
+    type: APIReference
+    note: Official platform API client documents REST endpoints for deployments, clusters, capacity, status, and logs with Bearer auth.
+actions:
+  asyncapiPath: asyncapi/centml-asyncapi.yml
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Under the updated 2026-05-29 scope
+    that allows SSE in AsyncAPI, an AsyncAPI 2.6 document was authored for
+    the chat completion SSE stream, with HTTP+SSE transport documented
+    explicitly throughout the spec (server protocol, channel bindings,
+    info.x-transport-notes) so SSE is never misrepresented as WebSocket.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,108 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: CentML
+providerId: centml
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- LLM
+- Inference
+- Serverless
+- GPU
+- Plans
+description: >-
+  CentML uses a credit-based, pay-as-you-go pricing model where 1 CentML credit
+  equals 1 USD. Serverless endpoints are billed by the total number of input and
+  output tokens processed, with per-token rates that vary by model. Dedicated
+  deployments (dedicated inference / compute endpoints) are billed by the type
+  and duration of GPU hardware used, on a per-minute basis (commonly expressed as
+  a per-GPU-hour rate). Enterprise plans with custom commitments are available by
+  contacting CentML. Specific per-model token rates and per-GPU-hour rates are not
+  reconciled in this artifact and should be confirmed on the CentML pricing page.
+notes: >-
+  Representative billing structure as published by CentML; exact per-model
+  serverless token rates and per-GPU-hour dedicated rates change over time and
+  are not reconciled here. Verify on the CentML pricing page during reconciliation.
+sources:
+- https://centml.ai/pricing/
+- https://docs.centml.ai/apps/serverless
+- https://docs.centml.ai/apps/inference
+plans:
+- id: centml-serverless
+  name: Serverless Endpoints
+  type: usage
+  description: >-
+    OpenAI-compatible serverless inference billed by tokens processed. No
+    infrastructure to manage; per-token rates vary by model.
+  entries:
+  - label: Serverless Input Tokens
+    name: serverless_input_tokens
+    type: usage
+    metric: tokens
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000000
+    price: per-1M-token rate varies by model (see CentML pricing page)
+    userMultiplied: false
+  - label: Serverless Output Tokens
+    name: serverless_output_tokens
+    type: usage
+    metric: tokens
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000000
+    price: per-1M-token rate varies by model (see CentML pricing page)
+    userMultiplied: false
+  elements:
+  - name: Chat Completions
+  - name: Completions
+  - name: Models
+- id: centml-dedicated
+  name: Dedicated Deployments
+  type: usage
+  description: >-
+    Dedicated, autoscaling inference / compute endpoints billed by GPU hardware
+    type and duration on a per-minute basis (per-GPU-hour equivalent).
+  entries:
+  - label: Dedicated GPU Hours
+    name: dedicated_gpu_hours
+    type: usage
+    metric: gpu_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-GPU-hour rate varies by hardware instance (A100, H100, L4, etc.)
+    userMultiplied: false
+  elements:
+  - name: Dedicated Inference Endpoints
+  - name: Compute Deployments
+  - name: Custom Model Endpoints
+- id: centml-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom plans for larger-scale or specialized deployments, including volume
+    commitments and dedicated support. Contact CentML sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,63 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: CentML
+providerId: centml
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- LLM
+- Inference
+- Serverless
+- GPU
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  CentML's serverless inference API enforces per-account rate limits expressed
+  as requests per minute and tokens per minute, which vary by model and account
+  tier. Dedicated deployments are governed by the capacity of the provisioned
+  GPU hardware and configured autoscaling (min/max replicas) rather than shared
+  account-level token limits. Specific per-model limit values are not reconciled
+  in this artifact.
+notes: >-
+  Verify per-model and per-account limits in the CentML platform / documentation
+  on reconciliation; serverless limits change as accounts move between tiers, and
+  dedicated throughput depends on the selected hardware instance and replica count.
+sources:
+- https://docs.centml.ai/apps/serverless
+- https://docs.centml.ai/apps/inference
+- https://centml.ai/pricing/
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute (RPM)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-model RPM on serverless endpoints, varies by tier and model.
+- name: Tokens Per Minute (TPM)
+  scope: account
+  metric: tokens
+  limit: see provider documentation
+  notes: Per-model TPM on serverless endpoints, varies by tier and model.
+- name: Concurrent Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Concurrency permitted against serverless endpoints, varies by tier.
+- name: Dedicated Replica Capacity
+  scope: deployment
+  metric: replicas
+  limit: configured via min/max replicas
+  notes: Dedicated deployment throughput is bounded by provisioned GPU hardware and autoscaling settings, not shared account token limits.
+policies:
+- name: Tiered Limits
+  description: Limits raise as accounts move from free / trial to paid usage and via Enterprise agreements.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

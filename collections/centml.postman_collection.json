@@ -1,0 +1,436 @@
+{
+  "item": [
+    {
+      "id": "c1a0e001-0001-4001-a001-000000000001",
+      "name": "Chat",
+      "description": {
+        "content": "OpenAI-compatible chat completions on CentML serverless endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1a0e001-0001-4001-a001-000000000101",
+          "name": "Creates a model response for the given chat conversation.",
+          "request": {
+            "name": "Creates a model response for the given chat conversation.",
+            "description": {
+              "content": "OpenAI-compatible chat completions. Set stream=true for SSE.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openai",
+                "v1",
+                "chat",
+                "completions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a helpful assistant.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What is CentML's value prop?\"\n    }\n  ],\n  \"max_tokens\": 2000,\n  \"temperature\": 0.7,\n  \"top_p\": 1,\n  \"n\": 1,\n  \"stream\": false,\n  \"frequency_penalty\": 0,\n  \"presence_penalty\": 0.5,\n  \"stop\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c1a0e001-0001-4001-a001-000000000002",
+      "name": "Completions",
+      "description": {
+        "content": "OpenAI-compatible text completions on CentML serverless endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1a0e001-0001-4001-a001-000000000201",
+          "name": "Creates a completion for the provided prompt.",
+          "request": {
+            "name": "Creates a completion for the provided prompt.",
+            "description": {},
+            "url": {
+              "path": [
+                "openai",
+                "v1",
+                "completions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8\",\n  \"prompt\": \"CentML optimizes\",\n  \"max_tokens\": 256,\n  \"temperature\": 0.7,\n  \"stream\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c1a0e001-0001-4001-a001-000000000003",
+      "name": "Models",
+      "description": {
+        "content": "List and retrieve models available on CentML serverless endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1a0e001-0001-4001-a001-000000000301",
+          "name": "Lists the models available on CentML serverless endpoints.",
+          "request": {
+            "name": "Lists the models available on CentML serverless endpoints.",
+            "description": {},
+            "url": {
+              "path": [
+                "openai",
+                "v1",
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c1a0e001-0001-4001-a001-000000000302",
+          "name": "Retrieves a model instance.",
+          "request": {
+            "name": "Retrieves a model instance.",
+            "description": {},
+            "url": {
+              "path": [
+                "openai",
+                "v1",
+                "models",
+                ":model"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "model",
+                  "value": "",
+                  "description": "The ID of the model to retrieve."
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c1a0e001-0001-4001-a001-000000000004",
+      "name": "Deployments",
+      "description": {
+        "content": "CentML platform (control-plane) API for managing dedicated deployments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1a0e001-0001-4001-a001-000000000401",
+          "name": "Lists all deployments for the account.",
+          "request": {
+            "name": "Lists all deployments for the account.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments"
+              ],
+              "host": [
+                "{{platformBaseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c1a0e001-0001-4001-a001-000000000402",
+          "name": "Creates a dedicated inference deployment.",
+          "request": {
+            "name": "Creates a dedicated inference deployment.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "inference"
+              ],
+              "host": [
+                "{{platformBaseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"my-inference\",\n  \"cluster_id\": 1,\n  \"hardware_instance_id\": 1,\n  \"model\": \"meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8\",\n  \"min_replicas\": 1,\n  \"max_replicas\": 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1a0e001-0001-4001-a001-000000000403",
+          "name": "Retrieves an inference deployment by ID.",
+          "request": {
+            "name": "Retrieves an inference deployment by ID.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "inference",
+                ":deployment_id"
+              ],
+              "host": [
+                "{{platformBaseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "deployment_id",
+                  "value": "",
+                  "description": "The ID of the deployment to retrieve."
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c1a0e001-0001-4001-a001-000000000404",
+          "name": "Gets the status of a deployment.",
+          "request": {
+            "name": "Gets the status of a deployment.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "status",
+                ":deployment_id"
+              ],
+              "host": [
+                "{{platformBaseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "deployment_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c1a0e001-0001-4001-a001-000000000405",
+          "name": "Returns logs for a deployment.",
+          "request": {
+            "name": "Returns logs for a deployment.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "logs",
+                ":deployment_id"
+              ],
+              "host": [
+                "{{platformBaseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "deployment_id",
+                  "value": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c1a0e001-0001-4001-a001-000000000005",
+      "name": "Clusters",
+      "description": {
+        "content": "CentML platform (control-plane) API for clusters and capacity.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1a0e001-0001-4001-a001-000000000501",
+          "name": "Lists the regional clusters available to the account.",
+          "request": {
+            "name": "Lists the regional clusters available to the account.",
+            "description": {},
+            "url": {
+              "path": [
+                "clusters"
+              ],
+              "host": [
+                "{{platformBaseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c1a0e001-0001-4001-a001-000000000502",
+          "name": "Lists available GPU capacity and hardware instances.",
+          "request": {
+            "name": "Lists available GPU capacity and hardware instances.",
+            "description": {},
+            "url": {
+              "path": [
+                "capacity"
+              ],
+              "host": [
+                "{{platformBaseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": []
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.centml.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.centml.com",
+      "key": "platformBaseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c1a0e001-0001-4001-a001-000000000000",
+    "name": "CentML API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CentML OpenAI-compatible serverless inference API (https://api.centml.com/openai/v1) and platform control-plane API for deployments and clusters (https://api.centml.com). Bearer API key auth.\n\nContact Support:\n URL: https://docs.centml.ai/resources/requesting_support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,123 @@
+aid: centml
+url: https://raw.githubusercontent.com/api-evangelist/centml/refs/heads/main/apis.yml
+name: CentML
+kind: company
+description: CentML is an AI inference optimization platform that serves popular open
+  models through OpenAI-compatible serverless endpoints and lets teams stand up
+  dedicated, autoscaling model-serving deployments and compute clusters. The serverless
+  inference API runs at https://api.centml.com/openai/v1 with Bearer API keys, while
+  a separate platform (control-plane) API manages deployments and clusters.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- LLM
+- Inference
+- Serverless
+- GPU
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: centml:centml-serverless-inference-api
+  name: CentML Serverless Inference (Chat Completions) API
+  tags:
+  - Chat
+  - Completions
+  - LLM
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.centml.ai/apps/serverless
+  baseURL: https://api.centml.com/openai/v1
+  properties:
+  - url: https://docs.centml.ai/apps/serverless
+    type: Documentation
+  - url: https://docs.centml.ai/clients/sdk
+    type: APIReference
+  - url: openapi/centml-openapi.yml
+    type: OpenAPI
+  - url: asyncapi/centml-asyncapi.yml
+    type: AsyncAPI
+  - url: collections/centml.postman_collection.json
+    type: Postman
+  description: OpenAI-compatible chat completions and text completions across open
+    models (Llama, Qwen, DeepSeek, GPT OSS and others) running on CentML-optimized
+    serverless GPU endpoints, with streaming, tool use, and structured outputs.
+- aid: centml:centml-models-api
+  name: CentML Models API
+  tags:
+  - Models
+  - Catalog
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.centml.ai/apps/serverless
+  baseURL: https://api.centml.com/openai/v1
+  properties:
+  - url: https://docs.centml.ai/apps/serverless
+    type: Documentation
+  - url: https://centml.ai/models/
+    type: APIReference
+  - url: openapi/centml-openapi.yml
+    type: OpenAPI
+  - url: collections/centml.postman_collection.json
+    type: Postman
+  description: Lists the models available on CentML's OpenAI-compatible serverless
+    endpoints, returning model IDs that can be passed to the chat completions and
+    completions endpoints.
+- aid: centml:centml-deployments-api
+  name: CentML Deployments / Endpoints API
+  tags:
+  - Deployments
+  - Endpoints
+  - Platform
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.centml.ai/apps/inference
+  baseURL: https://api.centml.com
+  properties:
+  - url: https://docs.centml.ai/apps/inference
+    type: Documentation
+  - url: https://docs.centml.ai/clients/sdk
+    type: APIReference
+  - url: openapi/centml-openapi.yml
+    type: OpenAPI
+  - url: collections/centml.postman_collection.json
+    type: Postman
+  description: Platform (control-plane) API for creating and managing dedicated
+    inference, compute, and job deployments - including create, retrieve, update,
+    status, and logs - that expose models as autoscaling HTTPS endpoints.
+- aid: centml:centml-clusters-api
+  name: CentML Clusters API
+  tags:
+  - Clusters
+  - Capacity
+  - GPU
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.centml.ai/apps/inference
+  baseURL: https://api.centml.com
+  properties:
+  - url: https://docs.centml.ai/apps/inference
+    type: Documentation
+  - url: https://docs.centml.ai/clients/sdk
+    type: APIReference
+  - url: openapi/centml-openapi.yml
+    type: OpenAPI
+  - url: collections/centml.postman_collection.json
+    type: Postman
+  description: Platform (control-plane) API for listing regional clusters and GPU
+    capacity available to place deployments on, used when selecting hardware and
+    region for dedicated endpoints.
+common:
+- type: GitHubOrganization
+  url: https://github.com/CentML
+- type: LinkedIn
+  url: https://www.linkedin.com/company/centml
+- type: Website
+  url: https://centml.ai/
+- type: Documentation
+  url: https://docs.centml.ai
+- type: Plans
+  url: plans/centml-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/centml-rate-limits.yml
+- type: FinOps
+  url: finops/centml-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

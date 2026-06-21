@@ -1,0 +1,234 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CentML API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a model response for the given chat conversation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.centml.com/openai/v1/chat/completions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "OpenAI-compatible chat completions on CentML serverless endpoints. Set stream=true for Server-Sent Events."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Completions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a completion for the provided prompt.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.centml.com/openai/v1/completions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "OpenAI-compatible text completions on CentML serverless endpoints."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists the models available on CentML serverless endpoints.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/openai/v1/models"
+          },
+          "docs": "Returns the model IDs available to the account on the serverless API."
+        },
+        {
+          "info": {
+            "name": "Retrieves a model instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/openai/v1/models/:model",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the model to retrieve."
+              }
+            ]
+          },
+          "docs": "Returns metadata for a single model by ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists all deployments for the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/deployments"
+          },
+          "docs": "Platform control-plane endpoint. Lists inference, compute, and job deployments."
+        },
+        {
+          "info": {
+            "name": "Creates a dedicated inference deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.centml.com/deployments/inference",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a dedicated, autoscaling inference deployment on a selected cluster and hardware instance."
+        },
+        {
+          "info": {
+            "name": "Retrieves an inference deployment by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/deployments/inference/:deployment_id",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the deployment to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieves a single inference deployment."
+        },
+        {
+          "info": {
+            "name": "Creates a compute deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.centml.com/deployments/compute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a compute deployment."
+        },
+        {
+          "info": {
+            "name": "Gets the status of a deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/deployments/status/:deployment_id",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the current status of a deployment."
+        },
+        {
+          "info": {
+            "name": "Returns logs for a deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/deployments/logs/:deployment_id",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns log output for a deployment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists the regional clusters available to the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/clusters"
+          },
+          "docs": "Platform control-plane endpoint. Lists managed regional clusters for placing deployments."
+        },
+        {
+          "info": {
+            "name": "Lists available GPU capacity and hardware instances.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/capacity"
+          },
+          "docs": "Returns GPU hardware instance types and available capacity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
