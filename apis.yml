@@ -104,6 +104,10 @@ apis:
     capacity available to place deployments on, used when selecting hardware and
     region for dedicated endpoints.
 common:
+- type: DomainSecurity
+  url: security/centml-domain-security.yml
+- type: Authentication
+  url: authentication/centml-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/CentML
 - type: LinkedIn

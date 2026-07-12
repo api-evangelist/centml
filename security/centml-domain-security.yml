@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: centml.ai
+  https: false
+- host: docs.centml.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 31 21:40:01 2026 GMT
+  hsts: false
+- host: api.centml.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 21 00:55:09 2026 GMT
+  hsts: null
+domains:
+- domain: centml.ai
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: centml.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

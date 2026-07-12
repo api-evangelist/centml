@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/centml-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: CentML API key
+  description: 'Set the `Authorization: Bearer <CENTML_API_KEY>` header. Serverless inference
+    uses a serverless token; the platform API uses an account access token. Both are issued
+    from the CentML platform.'
+  sources:
+  - openapi/centml-openapi.yml
