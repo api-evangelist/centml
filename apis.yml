@@ -104,6 +104,8 @@ apis:
     capacity available to place deployments on, used when selecting hardware and
     region for dedicated endpoints.
 common:
+- type: AgenticAccess
+  url: agentic-access/centml-agentic-access.yml
 - type: DomainSecurity
   url: security/centml-domain-security.yml
 - type: Authentication
