@@ -1,0 +1,284 @@
+openapi: 3.0.1
+info:
+  title: CentML Chat Deployments API
+  description: 'Specification of the CentML API surface. CentML exposes two related but distinct HTTP APIs: (1) an OpenAI-compatible serverless inference API for chat completions, text completions, and model listing served at https://api.centml.com/openai/v1, authenticated with a Bearer serverless token; and (2) a platform (control-plane) API for managing dedicated inference / compute / job deployments and clusters, also Bearer-authenticated. Both are modeled here. Endpoints reflect CentML''s published documentation (docs.centml.ai) and the official platform_api_python_client.'
+  termsOfService: https://centml.ai/terms-of-service/
+  contact:
+    name: CentML Support
+    url: https://docs.centml.ai/resources/requesting_support
+  version: '1.0'
+servers:
+- url: https://api.centml.com/openai/v1
+  description: OpenAI-compatible serverless inference base URL.
+- url: https://api.centml.com
+  description: CentML platform (control-plane) base URL for deployments and clusters.
+security:
+- bearerAuth: []
+tags:
+- name: Deployments
+paths:
+  /deployments:
+    get:
+      operationId: listDeployments
+      tags:
+      - Deployments
+      summary: Lists all deployments for the account.
+      description: Platform control-plane endpoint. Returns all deployments (inference, compute, and job) for the authenticated account. Served at https://api.centml.com/deployments.
+      servers:
+      - url: https://api.centml.com
+      parameters:
+      - name: type
+        in: query
+        required: false
+        description: Optional deployment type filter (e.g. inference, compute, job).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentList'
+  /deployments/inference:
+    post:
+      operationId: createInferenceDeployment
+      tags:
+      - Deployments
+      summary: Creates a dedicated inference deployment.
+      description: Platform control-plane endpoint. Creates a dedicated, autoscaling inference deployment that serves a model as an HTTPS endpoint on a selected cluster and hardware instance. Served at https://api.centml.com/deployments/inference.
+      servers:
+      - url: https://api.centml.com
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInferenceDeploymentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+    put:
+      operationId: updateInferenceDeployment
+      tags:
+      - Deployments
+      summary: Updates an existing inference deployment.
+      servers:
+      - url: https://api.centml.com
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInferenceDeploymentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+  /deployments/inference/{deployment_id}:
+    get:
+      operationId: getInferenceDeployment
+      tags:
+      - Deployments
+      summary: Retrieves an inference deployment by ID.
+      servers:
+      - url: https://api.centml.com
+      parameters:
+      - name: deployment_id
+        in: path
+        required: true
+        description: The ID of the deployment to retrieve.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+  /deployments/compute:
+    post:
+      operationId: createComputeDeployment
+      tags:
+      - Deployments
+      summary: Creates a compute deployment.
+      description: Platform control-plane endpoint to create a compute deployment. Served at https://api.centml.com/deployments/compute.
+      servers:
+      - url: https://api.centml.com
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateComputeDeploymentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+  /deployments/status/{deployment_id}:
+    get:
+      operationId: getDeploymentStatus
+      tags:
+      - Deployments
+      summary: Gets the status of a deployment.
+      servers:
+      - url: https://api.centml.com
+      parameters:
+      - name: deployment_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentStatus'
+    put:
+      operationId: updateDeploymentStatus
+      tags:
+      - Deployments
+      summary: Updates the status of a deployment (e.g. pause or delete).
+      servers:
+      - url: https://api.centml.com
+      parameters:
+      - name: deployment_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeploymentStatus'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentStatus'
+  /deployments/logs/{deployment_id}:
+    get:
+      operationId: getDeploymentLogs
+      tags:
+      - Deployments
+      summary: Returns logs for a deployment.
+      servers:
+      - url: https://api.centml.com
+      parameters:
+      - name: deployment_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentLogs'
+components:
+  schemas:
+    DeploymentList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
+    DeploymentStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+          description: The deployment status to read or set (e.g. running, paused, deleted).
+    CreateInferenceDeploymentRequest:
+      type: object
+      required:
+      - name
+      - cluster_id
+      - hardware_instance_id
+      properties:
+        name:
+          type: string
+          description: A name for the inference deployment.
+        cluster_id:
+          type: integer
+          description: ID of the cluster to deploy to (from GET /clusters).
+        hardware_instance_id:
+          type: integer
+          description: ID of the GPU hardware instance (from GET /capacity).
+        model:
+          type: string
+          description: The model or image to serve.
+        min_replicas:
+          type: integer
+          description: Minimum number of replicas for autoscaling.
+        max_replicas:
+          type: integer
+          description: Maximum number of replicas for autoscaling.
+    Deployment:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique deployment ID.
+        name:
+          type: string
+          description: Human-readable deployment name.
+        type:
+          type: string
+          description: Deployment type (inference, compute, or job).
+        status:
+          type: string
+          description: Current deployment status (e.g. running, paused, deleted).
+        cluster_id:
+          type: integer
+          description: The cluster the deployment is placed on.
+        endpoint_url:
+          type: string
+          description: The HTTPS endpoint URL once the deployment is ready.
+    CreateComputeDeploymentRequest:
+      type: object
+      required:
+      - name
+      - cluster_id
+      - hardware_instance_id
+      properties:
+        name:
+          type: string
+        cluster_id:
+          type: integer
+        hardware_instance_id:
+          type: integer
+    DeploymentLogs:
+      type: object
+      properties:
+        logs:
+          type: string
+          description: Log output for the deployment.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: CentML API key
+      description: 'Set the `Authorization: Bearer <CENTML_API_KEY>` header. Serverless inference uses a serverless token; the platform API uses an account access token. Both are issued from the CentML platform.'

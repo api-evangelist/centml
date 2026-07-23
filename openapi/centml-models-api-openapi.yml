@@ -1,0 +1,97 @@
+openapi: 3.0.1
+info:
+  title: CentML Chat Models API
+  description: 'Specification of the CentML API surface. CentML exposes two related but distinct HTTP APIs: (1) an OpenAI-compatible serverless inference API for chat completions, text completions, and model listing served at https://api.centml.com/openai/v1, authenticated with a Bearer serverless token; and (2) a platform (control-plane) API for managing dedicated inference / compute / job deployments and clusters, also Bearer-authenticated. Both are modeled here. Endpoints reflect CentML''s published documentation (docs.centml.ai) and the official platform_api_python_client.'
+  termsOfService: https://centml.ai/terms-of-service/
+  contact:
+    name: CentML Support
+    url: https://docs.centml.ai/resources/requesting_support
+  version: '1.0'
+servers:
+- url: https://api.centml.com/openai/v1
+  description: OpenAI-compatible serverless inference base URL.
+- url: https://api.centml.com
+  description: CentML platform (control-plane) base URL for deployments and clusters.
+security:
+- bearerAuth: []
+tags:
+- name: Models
+paths:
+  /models:
+    get:
+      operationId: listModels
+      tags:
+      - Models
+      summary: Lists the models available on CentML serverless endpoints.
+      description: Returns the set of model IDs available to the authenticated account on the OpenAI-compatible serverless API. Served at https://api.centml.com/openai/v1/models.
+      servers:
+      - url: https://api.centml.com/openai/v1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListModelsResponse'
+  /models/{model}:
+    get:
+      operationId: retrieveModel
+      tags:
+      - Models
+      summary: Retrieves a model instance.
+      description: Returns metadata for a single model by ID. Served at https://api.centml.com/openai/v1/models/{model}.
+      servers:
+      - url: https://api.centml.com/openai/v1
+      parameters:
+      - name: model
+        in: path
+        required: true
+        description: The ID of the model to retrieve.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+components:
+  schemas:
+    Model:
+      type: object
+      required:
+      - id
+      - object
+      properties:
+        id:
+          type: string
+          description: The model identifier.
+        object:
+          type: string
+          enum:
+          - model
+        created:
+          type: integer
+        owned_by:
+          type: string
+    ListModelsResponse:
+      type: object
+      required:
+      - object
+      - data
+      properties:
+        object:
+          type: string
+          enum:
+          - list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Model'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: CentML API key
+      description: 'Set the `Authorization: Bearer <CENTML_API_KEY>` header. Serverless inference uses a serverless token; the platform API uses an account access token. Both are issued from the CentML platform.'

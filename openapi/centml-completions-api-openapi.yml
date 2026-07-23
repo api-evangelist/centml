@@ -1,0 +1,126 @@
+openapi: 3.0.1
+info:
+  title: CentML Chat Completions API
+  description: 'Specification of the CentML API surface. CentML exposes two related but distinct HTTP APIs: (1) an OpenAI-compatible serverless inference API for chat completions, text completions, and model listing served at https://api.centml.com/openai/v1, authenticated with a Bearer serverless token; and (2) a platform (control-plane) API for managing dedicated inference / compute / job deployments and clusters, also Bearer-authenticated. Both are modeled here. Endpoints reflect CentML''s published documentation (docs.centml.ai) and the official platform_api_python_client.'
+  termsOfService: https://centml.ai/terms-of-service/
+  contact:
+    name: CentML Support
+    url: https://docs.centml.ai/resources/requesting_support
+  version: '1.0'
+servers:
+- url: https://api.centml.com/openai/v1
+  description: OpenAI-compatible serverless inference base URL.
+- url: https://api.centml.com
+  description: CentML platform (control-plane) base URL for deployments and clusters.
+security:
+- bearerAuth: []
+tags:
+- name: Completions
+paths:
+  /completions:
+    post:
+      operationId: createCompletion
+      tags:
+      - Completions
+      summary: Creates a completion for the provided prompt.
+      description: OpenAI-compatible text completions endpoint. Served at https://api.centml.com/openai/v1/completions.
+      servers:
+      - url: https://api.centml.com/openai/v1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCompletionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCompletionResponse'
+components:
+  schemas:
+    CreateCompletionResponse:
+      type: object
+      required:
+      - id
+      - object
+      - created
+      - model
+      - choices
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          enum:
+          - text_completion
+        created:
+          type: integer
+        model:
+          type: string
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              text:
+                type: string
+              finish_reason:
+                type: string
+                nullable: true
+        usage:
+          $ref: '#/components/schemas/Usage'
+    Usage:
+      type: object
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
+    CreateCompletionRequest:
+      type: object
+      required:
+      - model
+      - prompt
+      properties:
+        model:
+          type: string
+        prompt:
+          type: string
+          description: The prompt to generate completions for.
+        max_tokens:
+          type: integer
+          nullable: true
+        temperature:
+          type: number
+          nullable: true
+          default: 1
+        top_p:
+          type: number
+          nullable: true
+          default: 1
+        n:
+          type: integer
+          nullable: true
+          default: 1
+        stream:
+          type: boolean
+          nullable: true
+          default: false
+        stop:
+          type: array
+          nullable: true
+          items:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: CentML API key
+      description: 'Set the `Authorization: Bearer <CENTML_API_KEY>` header. Serverless inference uses a serverless token; the platform API uses an account access token. Both are issued from the CentML platform.'

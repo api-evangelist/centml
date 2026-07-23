@@ -1,0 +1,217 @@
+openapi: 3.0.1
+info:
+  title: CentML Chat API
+  description: 'Specification of the CentML API surface. CentML exposes two related but distinct HTTP APIs: (1) an OpenAI-compatible serverless inference API for chat completions, text completions, and model listing served at https://api.centml.com/openai/v1, authenticated with a Bearer serverless token; and (2) a platform (control-plane) API for managing dedicated inference / compute / job deployments and clusters, also Bearer-authenticated. Both are modeled here. Endpoints reflect CentML''s published documentation (docs.centml.ai) and the official platform_api_python_client.'
+  termsOfService: https://centml.ai/terms-of-service/
+  contact:
+    name: CentML Support
+    url: https://docs.centml.ai/resources/requesting_support
+  version: '1.0'
+servers:
+- url: https://api.centml.com/openai/v1
+  description: OpenAI-compatible serverless inference base URL.
+- url: https://api.centml.com
+  description: CentML platform (control-plane) base URL for deployments and clusters.
+security:
+- bearerAuth: []
+tags:
+- name: Chat
+paths:
+  /chat/completions:
+    post:
+      operationId: createChatCompletion
+      tags:
+      - Chat
+      summary: Creates a model response for the given chat conversation.
+      description: 'OpenAI-compatible chat completions endpoint. Pass a `model` ID from the serverless catalog and a `messages` array. Set `stream: true` to receive the response as Server-Sent Events. Served at https://api.centml.com/openai/v1/chat/completions.'
+      servers:
+      - url: https://api.centml.com/openai/v1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChatCompletionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateChatCompletionResponse'
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/ChatCompletionChunk'
+components:
+  schemas:
+    ChatCompletionChunk:
+      type: object
+      description: A streamed chunk of a chat completion (SSE), object chat.completion.chunk.
+      required:
+      - id
+      - object
+      - created
+      - model
+      - choices
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          enum:
+          - chat.completion.chunk
+        created:
+          type: integer
+        model:
+          type: string
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              delta:
+                $ref: '#/components/schemas/ChatMessage'
+              finish_reason:
+                type: string
+                nullable: true
+    CreateChatCompletionResponse:
+      type: object
+      required:
+      - id
+      - object
+      - created
+      - model
+      - choices
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          enum:
+          - chat.completion
+        created:
+          type: integer
+        model:
+          type: string
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              message:
+                $ref: '#/components/schemas/ChatMessage'
+              finish_reason:
+                type: string
+                nullable: true
+                enum:
+                - stop
+                - length
+                - tool_calls
+        usage:
+          $ref: '#/components/schemas/Usage'
+    Usage:
+      type: object
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
+    ChatMessage:
+      type: object
+      required:
+      - role
+      - content
+      properties:
+        role:
+          type: string
+          enum:
+          - system
+          - user
+          - assistant
+          - tool
+          description: The role of the message author.
+        content:
+          type: string
+          nullable: true
+          description: The contents of the message.
+        name:
+          type: string
+          description: An optional name for the participant.
+    CreateChatCompletionRequest:
+      type: object
+      required:
+      - model
+      - messages
+      properties:
+        model:
+          type: string
+          description: ID of a serverless model, e.g. meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8.
+        messages:
+          type: array
+          description: A list of messages comprising the conversation so far.
+          items:
+            $ref: '#/components/schemas/ChatMessage'
+        max_tokens:
+          type: integer
+          nullable: true
+          description: The maximum number of tokens to generate in the completion.
+        temperature:
+          type: number
+          nullable: true
+          default: 1
+          description: Sampling temperature between 0 and 2.
+        top_p:
+          type: number
+          nullable: true
+          default: 1
+          description: Nucleus sampling probability mass.
+        top_k:
+          type: integer
+          nullable: true
+          description: Limits sampling to the top K tokens.
+        n:
+          type: integer
+          nullable: true
+          default: 1
+          description: How many chat completion choices to generate.
+        stream:
+          type: boolean
+          nullable: true
+          default: false
+          description: If true, partial deltas are sent as Server-Sent Events.
+        stop:
+          type: array
+          nullable: true
+          items:
+            type: string
+          description: Up to 4 sequences where the API will stop generating.
+        frequency_penalty:
+          type: number
+          nullable: true
+          default: 0
+          description: Penalizes new tokens based on existing frequency.
+        presence_penalty:
+          type: number
+          nullable: true
+          default: 0
+          description: Penalizes new tokens based on whether they appear so far.
+        tools:
+          type: array
+          description: A list of tools (functions) the model may call.
+          items:
+            type: object
+        response_format:
+          type: object
+          description: An object specifying the format the model must output (e.g. JSON).
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: CentML API key
+      description: 'Set the `Authorization: Bearer <CENTML_API_KEY>` header. Serverless inference uses a serverless token; the platform API uses an account access token. Both are issued from the CentML platform.'
