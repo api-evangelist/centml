@@ -7,7 +7,20 @@ description: CentML is an AI inference optimization platform that serves popular
   dedicated, autoscaling model-serving deployments and compute clusters. The serverless
   inference API runs at https://api.centml.com/openai/v1 with Bearer API keys, while
   a separate platform (control-plane) API manages deployments and clusters.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/centml.png
 tags:
 - AI
 - LLM
@@ -18,91 +31,116 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: centml:centml-serverless-inference-api
-  name: CentML Serverless Inference (Chat Completions) API
+- aid: centml:centml-chat-api
+  name: CentML Chat API
+  description: The Chat API from CentML — 1 operation(s) for chat.
+  humanURL: https://docs.centml.ai/apps/serverless
+  baseURL: https://api.centml.com/openai/v1
   tags:
   - Chat
-  - Completions
-  - LLM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.centml.ai/apps/serverless
-  baseURL: https://api.centml.com/openai/v1
   properties:
-  - url: https://docs.centml.ai/apps/serverless
-    type: Documentation
-  - url: https://docs.centml.ai/clients/sdk
-    type: APIReference
-  - url: openapi/centml-openapi.yml
-    type: OpenAPI
-  - url: asyncapi/centml-asyncapi.yml
-    type: AsyncAPI
-  - url: collections/centml.postman_collection.json
-    type: Postman
-  description: OpenAI-compatible chat completions and text completions across open
-    models (Llama, Qwen, DeepSeek, GPT OSS and others) running on CentML-optimized
-    serverless GPU endpoints, with streaming, tool use, and structured outputs.
-- aid: centml:centml-models-api
-  name: CentML Models API
-  tags:
-  - Models
-  - Catalog
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.centml.ai/apps/serverless
-  baseURL: https://api.centml.com/openai/v1
-  properties:
-  - url: https://docs.centml.ai/apps/serverless
-    type: Documentation
-  - url: https://centml.ai/models/
-    type: APIReference
-  - url: openapi/centml-openapi.yml
-    type: OpenAPI
-  - url: collections/centml.postman_collection.json
-    type: Postman
-  description: Lists the models available on CentML's OpenAI-compatible serverless
-    endpoints, returning model IDs that can be passed to the chat completions and
-    completions endpoints.
-- aid: centml:centml-deployments-api
-  name: CentML Deployments / Endpoints API
-  tags:
-  - Deployments
-  - Endpoints
-  - Platform
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.centml.ai/apps/inference
-  baseURL: https://api.centml.com
-  properties:
-  - url: https://docs.centml.ai/apps/inference
-    type: Documentation
-  - url: https://docs.centml.ai/clients/sdk
-    type: APIReference
-  - url: openapi/centml-openapi.yml
-    type: OpenAPI
-  - url: collections/centml.postman_collection.json
-    type: Postman
-  description: Platform (control-plane) API for creating and managing dedicated
-    inference, compute, and job deployments - including create, retrieve, update,
-    status, and logs - that expose models as autoscaling HTTPS endpoints.
+  - type: OpenAPI
+    url: openapi/centml-chat-api-openapi.yml
+  - type: Documentation
+    url: https://docs.centml.ai/apps/serverless
+  - type: APIReference
+    url: https://docs.centml.ai/clients/sdk
+  - type: AsyncAPI
+    url: asyncapi/centml-asyncapi.yml
+  - type: Postman
+    url: collections/centml.postman_collection.json
+  - type: APIReference
+    url: https://centml.ai/models/
+  - type: Documentation
+    url: https://docs.centml.ai/apps/inference
 - aid: centml:centml-clusters-api
   name: CentML Clusters API
+  description: The Clusters API from CentML — 2 operation(s) for clusters.
+  humanURL: https://docs.centml.ai/apps/serverless
+  baseURL: https://api.centml.com/openai/v1
   tags:
   - Clusters
-  - Capacity
-  - GPU
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.centml.ai/apps/inference
-  baseURL: https://api.centml.com
   properties:
-  - url: https://docs.centml.ai/apps/inference
-    type: Documentation
-  - url: https://docs.centml.ai/clients/sdk
-    type: APIReference
-  - url: openapi/centml-openapi.yml
-    type: OpenAPI
-  - url: collections/centml.postman_collection.json
-    type: Postman
-  description: Platform (control-plane) API for listing regional clusters and GPU
-    capacity available to place deployments on, used when selecting hardware and
-    region for dedicated endpoints.
+  - type: OpenAPI
+    url: openapi/centml-clusters-api-openapi.yml
+  - type: Documentation
+    url: https://docs.centml.ai/apps/serverless
+  - type: APIReference
+    url: https://docs.centml.ai/clients/sdk
+  - type: AsyncAPI
+    url: asyncapi/centml-asyncapi.yml
+  - type: Postman
+    url: collections/centml.postman_collection.json
+  - type: APIReference
+    url: https://centml.ai/models/
+  - type: Documentation
+    url: https://docs.centml.ai/apps/inference
+- aid: centml:centml-completions-api
+  name: CentML Completions API
+  description: The Completions API from CentML — 1 operation(s) for completions.
+  humanURL: https://docs.centml.ai/apps/serverless
+  baseURL: https://api.centml.com/openai/v1
+  tags:
+  - Completions
+  properties:
+  - type: OpenAPI
+    url: openapi/centml-completions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.centml.ai/apps/serverless
+  - type: APIReference
+    url: https://docs.centml.ai/clients/sdk
+  - type: AsyncAPI
+    url: asyncapi/centml-asyncapi.yml
+  - type: Postman
+    url: collections/centml.postman_collection.json
+  - type: APIReference
+    url: https://centml.ai/models/
+  - type: Documentation
+    url: https://docs.centml.ai/apps/inference
+- aid: centml:centml-deployments-api
+  name: CentML Deployments API
+  description: The Deployments API from CentML — 6 operation(s) for deployments.
+  humanURL: https://docs.centml.ai/apps/serverless
+  baseURL: https://api.centml.com/openai/v1
+  tags:
+  - Deployments
+  properties:
+  - type: OpenAPI
+    url: openapi/centml-deployments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.centml.ai/apps/serverless
+  - type: APIReference
+    url: https://docs.centml.ai/clients/sdk
+  - type: AsyncAPI
+    url: asyncapi/centml-asyncapi.yml
+  - type: Postman
+    url: collections/centml.postman_collection.json
+  - type: APIReference
+    url: https://centml.ai/models/
+  - type: Documentation
+    url: https://docs.centml.ai/apps/inference
+- aid: centml:centml-models-api
+  name: CentML Models API
+  description: The Models API from CentML — 2 operation(s) for models.
+  humanURL: https://docs.centml.ai/apps/serverless
+  baseURL: https://api.centml.com/openai/v1
+  tags:
+  - Models
+  properties:
+  - type: OpenAPI
+    url: openapi/centml-models-api-openapi.yml
+  - type: Documentation
+    url: https://docs.centml.ai/apps/serverless
+  - type: APIReference
+    url: https://docs.centml.ai/clients/sdk
+  - type: AsyncAPI
+    url: asyncapi/centml-asyncapi.yml
+  - type: Postman
+    url: collections/centml.postman_collection.json
+  - type: APIReference
+    url: https://centml.ai/models/
+  - type: Documentation
+    url: https://docs.centml.ai/apps/inference
 common:
 - type: AgenticAccess
   url: agentic-access/centml-agentic-access.yml
