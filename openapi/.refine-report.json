@@ -1,0 +1,22 @@
+{
+  "provider": "centml",
+  "sources": [
+    "centml-chat-api-openapi.yml",
+    "centml-clusters-api-openapi.yml",
+    "centml-completions-api-openapi.yml",
+    "centml-deployments-api-openapi.yml",
+    "centml-models-api-openapi.yml"
+  ],
+  "outputs": [
+    "centml-chat-api-openapi.yml",
+    "centml-clusters-api-openapi.yml",
+    "centml-completions-api-openapi.yml",
+    "centml-deployments-api-openapi.yml",
+    "centml-models-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
