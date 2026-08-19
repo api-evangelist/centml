@@ -1,0 +1,152 @@
+{
+  "item": [
+    {
+      "id": "a182b2fd-513b-4ec4-898f-ded8a4da3de7",
+      "name": "Chat",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "99abf41f-856b-44b7-98ee-f749b9009980",
+          "name": "Creates a model response for the given chat conversation.",
+          "request": {
+            "name": "Creates a model response for the given chat conversation.",
+            "description": {
+              "content": "OpenAI-compatible chat completions endpoint. Pass a `model` ID from the serverless catalog and a `messages` array. Set `stream: true` to receive the response as Server-Sent Events. Served at https://api.centml.com/openai/v1/chat/completions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "openai",
+                "v1",
+                "chat",
+                "completions"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"max_tokens\": \"<integer>\",\n  \"temperature\": 1,\n  \"top_p\": 1,\n  \"top_k\": \"<integer>\",\n  \"n\": 1,\n  \"stream\": false,\n  \"stop\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"frequency_penalty\": 0,\n  \"presence_penalty\": 0,\n  \"tools\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"response_format\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fbdd143e-c35a-4d9a-b390-a430e400219a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openai",
+                    "v1",
+                    "chat",
+                    "completions"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"max_tokens\": \"<integer>\",\n  \"temperature\": 1,\n  \"top_p\": 1,\n  \"top_k\": \"<integer>\",\n  \"n\": 1,\n  \"stream\": false,\n  \"stop\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"frequency_penalty\": 0,\n  \"presence_penalty\": 0,\n  \"tools\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"response_format\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"object\": \"chat.completion\",\n  \"created\": 8157,\n  \"model\": \"string\",\n  \"choices\": [\n    {\n      \"index\": 3030,\n      \"message\": {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"finish_reason\": \"length\"\n    },\n    {\n      \"index\": 4813,\n      \"message\": {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"finish_reason\": \"length\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 7860,\n    \"completion_tokens\": 1567,\n    \"total_tokens\": 8591\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.centml.com/openai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2bdcd39f-2016-48ca-aea7-9349daac8fd0",
+    "name": "CentML Chat API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of the CentML API surface. CentML exposes two related but distinct HTTP APIs: (1) an OpenAI-compatible serverless inference API for chat completions, text completions, and model listing served at https://api.centml.com/openai/v1, authenticated with a Bearer serverless token; and (2) a platform (control-plane) API for managing dedicated inference / compute / job deployments and clusters, also Bearer-authenticated. Both are modeled here. Endpoints reflect CentML's published documentation (docs.centml.ai) and the official platform_api_python_client.\n\nContact Support:\n Name: CentML Support",
+      "type": "text/plain"
+    }
+  }
+}

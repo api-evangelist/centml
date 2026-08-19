@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CentML Chat Models API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists the models available on CentML serverless endpoints.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/openai/v1/models"
+          },
+          "docs": "Returns the set of model IDs available to the authenticated account on the OpenAI-compatible serverless API. Served at https://api.centml.com/openai/v1/models."
+        },
+        {
+          "info": {
+            "name": "Retrieves a model instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/openai/v1/models/:model",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the model to retrieve."
+              }
+            ]
+          },
+          "docs": "Returns metadata for a single model by ID. Served at https://api.centml.com/openai/v1/models/{model}."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

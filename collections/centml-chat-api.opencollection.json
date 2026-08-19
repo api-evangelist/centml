@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CentML Chat API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a model response for the given chat conversation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.centml.com/openai/v1/chat/completions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "OpenAI-compatible chat completions endpoint. Pass a `model` ID from the serverless catalog and a `messages` array. Set `stream: true` to receive the response as Server-Sent Events. Served at https://api.centml.com/openai/v1/chat/completions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

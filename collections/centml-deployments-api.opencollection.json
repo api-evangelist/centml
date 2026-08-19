@@ -1,0 +1,165 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CentML Chat Deployments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists all deployments for the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/openai/v1/deployments",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Optional deployment type filter (e.g. inference, compute, job)."
+              }
+            ]
+          },
+          "docs": "Platform control-plane endpoint. Returns all deployments (inference, compute, and job) for the authenticated account. Served at https://api.centml.com/deployments."
+        },
+        {
+          "info": {
+            "name": "Creates a dedicated inference deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.centml.com/openai/v1/deployments/inference",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Platform control-plane endpoint. Creates a dedicated, autoscaling inference deployment that serves a model as an HTTPS endpoint on a selected cluster and hardware instance. Served at https://api.centml.com/deployments/inference."
+        },
+        {
+          "info": {
+            "name": "Updates an existing inference deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.centml.com/openai/v1/deployments/inference",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing inference deployment."
+        },
+        {
+          "info": {
+            "name": "Retrieves an inference deployment by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/openai/v1/deployments/inference/:deployment_id",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the deployment to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieves an inference deployment by ID."
+        },
+        {
+          "info": {
+            "name": "Creates a compute deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.centml.com/openai/v1/deployments/compute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Platform control-plane endpoint to create a compute deployment. Served at https://api.centml.com/deployments/compute."
+        },
+        {
+          "info": {
+            "name": "Gets the status of a deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/openai/v1/deployments/status/:deployment_id",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the status of a deployment."
+        },
+        {
+          "info": {
+            "name": "Updates the status of a deployment (e.g. pause or delete).",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.centml.com/openai/v1/deployments/status/:deployment_id",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the status of a deployment (e.g. pause or delete)."
+        },
+        {
+          "info": {
+            "name": "Returns logs for a deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/openai/v1/deployments/logs/:deployment_id",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns logs for a deployment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

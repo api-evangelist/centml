@@ -1,0 +1,235 @@
+{
+  "item": [
+    {
+      "id": "1b7c4967-550e-4565-87b6-b15ce55af727",
+      "name": "Models",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6f84a041-bc8c-414c-b054-fc9bb219dcd1",
+          "name": "Lists the models available on CentML serverless endpoints.",
+          "request": {
+            "name": "Lists the models available on CentML serverless endpoints.",
+            "description": {
+              "content": "Returns the set of model IDs available to the authenticated account on the OpenAI-compatible serverless API. Served at https://api.centml.com/openai/v1/models.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "openai",
+                "v1",
+                "models"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2bb35cd5-0a07-4afb-85e0-3a192899981a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openai",
+                    "v1",
+                    "models"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"object\": \"model\",\n      \"created\": 7791,\n      \"owned_by\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"object\": \"model\",\n      \"created\": 2680,\n      \"owned_by\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e47ef4d0-d2fc-424f-8853-e7eaba8333e5",
+          "name": "Retrieves a model instance.",
+          "request": {
+            "name": "Retrieves a model instance.",
+            "description": {
+              "content": "Returns metadata for a single model by ID. Served at https://api.centml.com/openai/v1/models/{model}.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "openai",
+                "v1",
+                "models",
+                ":model"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model",
+                  "description": "(Required) The ID of the model to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6530af4-a9ba-4202-9586-8139a4eea000",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openai",
+                    "v1",
+                    "models",
+                    ":model"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model",
+                      "description": "(Required) The ID of the model to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"object\": \"model\",\n  \"created\": 8047,\n  \"owned_by\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.centml.com/openai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5ebe7d0c-9209-46c9-bec2-a474aaf3cdb9",
+    "name": "CentML Chat Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of the CentML API surface. CentML exposes two related but distinct HTTP APIs: (1) an OpenAI-compatible serverless inference API for chat completions, text completions, and model listing served at https://api.centml.com/openai/v1, authenticated with a Bearer serverless token; and (2) a platform (control-plane) API for managing dedicated inference / compute / job deployments and clusters, also Bearer-authenticated. Both are modeled here. Endpoints reflect CentML's published documentation (docs.centml.ai) and the official platform_api_python_client.\n\nContact Support:\n Name: CentML Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CentML Chat Clusters API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists the regional clusters available to the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/openai/v1/clusters"
+          },
+          "docs": "Platform control-plane endpoint. Returns the managed regional clusters a deployment can be placed on. Served at https://api.centml.com/clusters."
+        },
+        {
+          "info": {
+            "name": "Lists available GPU capacity and hardware instances.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.centml.com/openai/v1/capacity"
+          },
+          "docs": "Platform control-plane endpoint. Returns the GPU hardware instance types and available capacity for placing deployments. Served at https://api.centml.com/capacity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

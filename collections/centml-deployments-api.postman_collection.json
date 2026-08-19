@@ -1,0 +1,880 @@
+{
+  "item": [
+    {
+      "id": "4667cfd2-da95-4827-9238-cb1187223d52",
+      "name": "Deployments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6805f55e-104f-4bc5-9ccb-3b75c334bbc7",
+          "name": "Lists all deployments for the account.",
+          "request": {
+            "name": "Lists all deployments for the account.",
+            "description": {
+              "content": "Platform control-plane endpoint. Returns all deployments (inference, compute, and job) for the authenticated account. Served at https://api.centml.com/deployments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "deployments"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Optional deployment type filter (e.g. inference, compute, job)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3686d969-14fd-4775-930a-1c9d52e1e439",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": 5731,\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"string\",\n      \"cluster_id\": 2561,\n      \"endpoint_url\": \"string\"\n    },\n    {\n      \"id\": 8155,\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"string\",\n      \"cluster_id\": 1854,\n      \"endpoint_url\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c6d1590-40a9-4f8e-b325-88b5d07311be",
+          "name": "Creates a dedicated inference deployment.",
+          "request": {
+            "name": "Creates a dedicated inference deployment.",
+            "description": {
+              "content": "Platform control-plane endpoint. Creates a dedicated, autoscaling inference deployment that serves a model as an HTTPS endpoint on a selected cluster and hardware instance. Served at https://api.centml.com/deployments/inference.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "deployments",
+                "inference"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"hardware_instance_id\": \"<integer>\",\n  \"model\": \"<string>\",\n  \"min_replicas\": \"<integer>\",\n  \"max_replicas\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0a2b8694-6c75-42fb-94e8-554de85d3689",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "deployments",
+                    "inference"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"hardware_instance_id\": \"<integer>\",\n  \"model\": \"<string>\",\n  \"min_replicas\": \"<integer>\",\n  \"max_replicas\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4802,\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"status\": \"string\",\n  \"cluster_id\": 9750,\n  \"endpoint_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21584762-09bc-494f-aff6-8c97e1cdc0ea",
+          "name": "Updates an existing inference deployment.",
+          "request": {
+            "name": "Updates an existing inference deployment.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "deployments",
+                "inference"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"hardware_instance_id\": \"<integer>\",\n  \"model\": \"<string>\",\n  \"min_replicas\": \"<integer>\",\n  \"max_replicas\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "efa4969f-f1df-4712-b627-4b01a3914fff",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "deployments",
+                    "inference"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"hardware_instance_id\": \"<integer>\",\n  \"model\": \"<string>\",\n  \"min_replicas\": \"<integer>\",\n  \"max_replicas\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4802,\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"status\": \"string\",\n  \"cluster_id\": 9750,\n  \"endpoint_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "391d40e2-88e8-44dd-929b-c0c057f83027",
+          "name": "Retrieves an inference deployment by ID.",
+          "request": {
+            "name": "Retrieves an inference deployment by ID.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "deployments",
+                "inference",
+                ":deployment_id"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "deployment_id",
+                  "description": "(Required) The ID of the deployment to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e519e50b-c728-432b-b7ca-6ceb9687f505",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "deployments",
+                    "inference",
+                    ":deployment_id"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "deployment_id",
+                      "description": "(Required) The ID of the deployment to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4802,\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"status\": \"string\",\n  \"cluster_id\": 9750,\n  \"endpoint_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7c4b177-13e4-4a58-a7a6-dea0c38c4ec5",
+          "name": "Creates a compute deployment.",
+          "request": {
+            "name": "Creates a compute deployment.",
+            "description": {
+              "content": "Platform control-plane endpoint to create a compute deployment. Served at https://api.centml.com/deployments/compute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "deployments",
+                "compute"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"hardware_instance_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3780067b-021b-410a-958e-69d97600ab0b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "deployments",
+                    "compute"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"cluster_id\": \"<integer>\",\n  \"hardware_instance_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4802,\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"status\": \"string\",\n  \"cluster_id\": 9750,\n  \"endpoint_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23f7dc91-d34e-4875-90a6-e9c64dd3ee26",
+          "name": "Gets the status of a deployment.",
+          "request": {
+            "name": "Gets the status of a deployment.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "deployments",
+                "status",
+                ":deployment_id"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "deployment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "289943bd-31b0-476b-8ad6-6f119537d188",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "deployments",
+                    "status",
+                    ":deployment_id"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "deployment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7860,\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8f5d7e9-3670-42e2-889c-eba7242c67a5",
+          "name": "Updates the status of a deployment (e.g. pause or delete).",
+          "request": {
+            "name": "Updates the status of a deployment (e.g. pause or delete).",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "deployments",
+                "status",
+                ":deployment_id"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "deployment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "621ee0a0-aa01-45a9-abd5-ca5320abd33b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "deployments",
+                    "status",
+                    ":deployment_id"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "deployment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8499154-7a5e-4c92-a419-3d60452dce47",
+          "name": "Returns logs for a deployment.",
+          "request": {
+            "name": "Returns logs for a deployment.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "deployments",
+                "logs",
+                ":deployment_id"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "deployment_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90e7a036-2928-4364-8ae5-3b67734cadb7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "deployments",
+                    "logs",
+                    ":deployment_id"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "deployment_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logs\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.centml.com/openai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "630ceed1-3b61-4663-bbdf-0ebac7fb7356",
+    "name": "CentML Chat Deployments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of the CentML API surface. CentML exposes two related but distinct HTTP APIs: (1) an OpenAI-compatible serverless inference API for chat completions, text completions, and model listing served at https://api.centml.com/openai/v1, authenticated with a Bearer serverless token; and (2) a platform (control-plane) API for managing dedicated inference / compute / job deployments and clusters, also Bearer-authenticated. Both are modeled here. Endpoints reflect CentML's published documentation (docs.centml.ai) and the official platform_api_python_client.\n\nContact Support:\n Name: CentML Support",
+      "type": "text/plain"
+    }
+  }
+}

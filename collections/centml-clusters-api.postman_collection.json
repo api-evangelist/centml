@@ -1,0 +1,209 @@
+{
+  "item": [
+    {
+      "id": "f06915cb-e183-421a-a093-1124df5fc792",
+      "name": "Clusters",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a726aa44-dd1a-4d62-9f99-8ba7ac316e64",
+          "name": "Lists the regional clusters available to the account.",
+          "request": {
+            "name": "Lists the regional clusters available to the account.",
+            "description": {
+              "content": "Platform control-plane endpoint. Returns the managed regional clusters a deployment can be placed on. Served at https://api.centml.com/clusters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "clusters"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02afdbb9-e251-41f3-a07d-d8bb0fb3745f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "clusters"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"clusters\": [\n    {\n      \"id\": 3737,\n      \"name\": \"string\",\n      \"region\": \"string\"\n    },\n    {\n      \"id\": 9716,\n      \"name\": \"string\",\n      \"region\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2b2c2ad-5270-461b-8f2f-9f47f332f20b",
+          "name": "Lists available GPU capacity and hardware instances.",
+          "request": {
+            "name": "Lists available GPU capacity and hardware instances.",
+            "description": {
+              "content": "Platform control-plane endpoint. Returns the GPU hardware instance types and available capacity for placing deployments. Served at https://api.centml.com/capacity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "capacity"
+              ],
+              "host": [
+                "api",
+                "centml",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a62788b3-f8fb-4d90-a0e4-da66f77301d4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "capacity"
+                  ],
+                  "host": [
+                    "api",
+                    "centml",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hardware_instances\": [\n    {\n      \"id\": 2944,\n      \"name\": \"string\",\n      \"gpu_count\": 7494,\n      \"cost_per_hour\": 2737.3953051944945\n    },\n    {\n      \"id\": 1073,\n      \"name\": \"string\",\n      \"gpu_count\": 7550,\n      \"cost_per_hour\": 9683.280845056981\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.centml.com/openai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5585e0fc-4d09-4030-a636-76163e9d5c88",
+    "name": "CentML Chat Clusters API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of the CentML API surface. CentML exposes two related but distinct HTTP APIs: (1) an OpenAI-compatible serverless inference API for chat completions, text completions, and model listing served at https://api.centml.com/openai/v1, authenticated with a Bearer serverless token; and (2) a platform (control-plane) API for managing dedicated inference / compute / job deployments and clusters, also Bearer-authenticated. Both are modeled here. Endpoints reflect CentML's published documentation (docs.centml.ai) and the official platform_api_python_client.\n\nContact Support:\n Name: CentML Support",
+      "type": "text/plain"
+    }
+  }
+}

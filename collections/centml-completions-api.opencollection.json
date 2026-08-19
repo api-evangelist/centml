@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CentML Chat Completions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Completions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a completion for the provided prompt.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.centml.com/openai/v1/completions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "OpenAI-compatible text completions endpoint. Served at https://api.centml.com/openai/v1/completions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
