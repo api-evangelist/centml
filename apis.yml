@@ -7,6 +7,18 @@ description: CentML is an AI inference optimization platform that serves popular
   dedicated, autoscaling model-serving deployments and compute clusters. The serverless
   inference API runs at https://api.centml.com/openai/v1 with Bearer API keys, while
   a separate platform (control-plane) API manages deployments and clusters.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
