@@ -164,6 +164,9 @@ apis:
   - type: Documentation
     url: https://docs.centml.ai/apps/inference
 common:
+- type: CapabilityMap
+  url: capabilities/centml-capability-edges.yml
+  name: CentML Business Capability Map
 - type: AgenticAccess
   url: agentic-access/centml-agentic-access.yml
 - type: DomainSecurity
