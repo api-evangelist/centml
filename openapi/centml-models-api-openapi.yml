@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: CentML Chat Models API
-  description: 'Specification of the CentML API surface. CentML exposes two related but distinct HTTP APIs: (1) an OpenAI-compatible serverless inference API for chat completions, text completions, and model listing served at https://api.centml.com/openai/v1, authenticated with a Bearer serverless token; and (2) a platform (control-plane) API for managing dedicated inference / compute / job deployments and clusters, also Bearer-authenticated. Both are modeled here. Endpoints reflect CentML''s published documentation (docs.centml.ai) and the official platform_api_python_client.'
+  title: CentML Models API
+  description: Specification of the CentML API surface.
   termsOfService: https://centml.ai/terms-of-service/
   contact:
     name: CentML Support
@@ -22,7 +22,7 @@ paths:
       operationId: listModels
       tags:
       - Models
-      summary: Lists the models available on CentML serverless endpoints.
+      summary: Lists the models available on CentML serverless endpoints
       description: Returns the set of model IDs available to the authenticated account on the OpenAI-compatible serverless API. Served at https://api.centml.com/openai/v1/models.
       servers:
       - url: https://api.centml.com/openai/v1
@@ -38,7 +38,7 @@ paths:
       operationId: retrieveModel
       tags:
       - Models
-      summary: Retrieves a model instance.
+      summary: Retrieves a model instance
       description: Returns metadata for a single model by ID. Served at https://api.centml.com/openai/v1/models/{model}.
       servers:
       - url: https://api.centml.com/openai/v1
@@ -58,6 +58,20 @@ paths:
                 $ref: '#/components/schemas/Model'
 components:
   schemas:
+    ListModelsResponse:
+      type: object
+      required:
+      - object
+      - data
+      properties:
+        object:
+          type: string
+          enum:
+          - list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Model'
     Model:
       type: object
       required:
@@ -75,20 +89,6 @@ components:
           type: integer
         owned_by:
           type: string
-    ListModelsResponse:
-      type: object
-      required:
-      - object
-      - data
-      properties:
-        object:
-          type: string
-          enum:
-          - list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Model'
   securitySchemes:
     bearerAuth:
       type: http

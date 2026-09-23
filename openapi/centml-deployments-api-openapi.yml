@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: CentML Chat Deployments API
-  description: 'Specification of the CentML API surface. CentML exposes two related but distinct HTTP APIs: (1) an OpenAI-compatible serverless inference API for chat completions, text completions, and model listing served at https://api.centml.com/openai/v1, authenticated with a Bearer serverless token; and (2) a platform (control-plane) API for managing dedicated inference / compute / job deployments and clusters, also Bearer-authenticated. Both are modeled here. Endpoints reflect CentML''s published documentation (docs.centml.ai) and the official platform_api_python_client.'
+  title: CentML Deployments API
+  description: Specification of the CentML API surface.
   termsOfService: https://centml.ai/terms-of-service/
   contact:
     name: CentML Support
@@ -22,7 +22,7 @@ paths:
       operationId: listDeployments
       tags:
       - Deployments
-      summary: Lists all deployments for the account.
+      summary: Lists all deployments for the account
       description: Platform control-plane endpoint. Returns all deployments (inference, compute, and job) for the authenticated account. Served at https://api.centml.com/deployments.
       servers:
       - url: https://api.centml.com
@@ -45,7 +45,7 @@ paths:
       operationId: createInferenceDeployment
       tags:
       - Deployments
-      summary: Creates a dedicated inference deployment.
+      summary: Creates a dedicated inference deployment
       description: Platform control-plane endpoint. Creates a dedicated, autoscaling inference deployment that serves a model as an HTTPS endpoint on a selected cluster and hardware instance. Served at https://api.centml.com/deployments/inference.
       servers:
       - url: https://api.centml.com
@@ -66,7 +66,7 @@ paths:
       operationId: updateInferenceDeployment
       tags:
       - Deployments
-      summary: Updates an existing inference deployment.
+      summary: Updates an existing inference deployment
       servers:
       - url: https://api.centml.com
       requestBody:
@@ -87,7 +87,7 @@ paths:
       operationId: getInferenceDeployment
       tags:
       - Deployments
-      summary: Retrieves an inference deployment by ID.
+      summary: Retrieves an inference deployment by ID
       servers:
       - url: https://api.centml.com
       parameters:
@@ -109,7 +109,7 @@ paths:
       operationId: createComputeDeployment
       tags:
       - Deployments
-      summary: Creates a compute deployment.
+      summary: Creates a compute deployment
       description: Platform control-plane endpoint to create a compute deployment. Served at https://api.centml.com/deployments/compute.
       servers:
       - url: https://api.centml.com
@@ -131,7 +131,7 @@ paths:
       operationId: getDeploymentStatus
       tags:
       - Deployments
-      summary: Gets the status of a deployment.
+      summary: Gets the status of a deployment
       servers:
       - url: https://api.centml.com
       parameters:
@@ -151,7 +151,7 @@ paths:
       operationId: updateDeploymentStatus
       tags:
       - Deployments
-      summary: Updates the status of a deployment (e.g. pause or delete).
+      summary: Updates the status of a deployment (e.g. pause or delete)
       servers:
       - url: https://api.centml.com
       parameters:
@@ -178,7 +178,7 @@ paths:
       operationId: getDeploymentLogs
       tags:
       - Deployments
-      summary: Returns logs for a deployment.
+      summary: Returns logs for a deployment
       servers:
       - url: https://api.centml.com
       parameters:
@@ -196,13 +196,6 @@ paths:
                 $ref: '#/components/schemas/DeploymentLogs'
 components:
   schemas:
-    DeploymentList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Deployment'
     DeploymentStatus:
       type: object
       properties:
@@ -236,6 +229,13 @@ components:
         max_replicas:
           type: integer
           description: Maximum number of replicas for autoscaling.
+    DeploymentList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
     Deployment:
       type: object
       properties:

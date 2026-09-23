@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: CentML Chat Clusters API
-  description: 'Specification of the CentML API surface. CentML exposes two related but distinct HTTP APIs: (1) an OpenAI-compatible serverless inference API for chat completions, text completions, and model listing served at https://api.centml.com/openai/v1, authenticated with a Bearer serverless token; and (2) a platform (control-plane) API for managing dedicated inference / compute / job deployments and clusters, also Bearer-authenticated. Both are modeled here. Endpoints reflect CentML''s published documentation (docs.centml.ai) and the official platform_api_python_client.'
+  title: CentML Clusters API
+  description: Specification of the CentML API surface.
   termsOfService: https://centml.ai/terms-of-service/
   contact:
     name: CentML Support
@@ -22,7 +22,7 @@ paths:
       operationId: getClusters
       tags:
       - Clusters
-      summary: Lists the regional clusters available to the account.
+      summary: Lists the regional clusters available to the account
       description: Platform control-plane endpoint. Returns the managed regional clusters a deployment can be placed on. Served at https://api.centml.com/clusters.
       servers:
       - url: https://api.centml.com
@@ -38,7 +38,7 @@ paths:
       operationId: listCapacity
       tags:
       - Clusters
-      summary: Lists available GPU capacity and hardware instances.
+      summary: Lists available GPU capacity and hardware instances
       description: Platform control-plane endpoint. Returns the GPU hardware instance types and available capacity for placing deployments. Served at https://api.centml.com/capacity.
       servers:
       - url: https://api.centml.com
@@ -51,13 +51,6 @@ paths:
                 $ref: '#/components/schemas/CapacityList'
 components:
   schemas:
-    CapacityList:
-      type: object
-      properties:
-        hardware_instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/HardwareInstance'
     HardwareInstance:
       type: object
       properties:
@@ -71,6 +64,20 @@ components:
         cost_per_hour:
           type: number
           description: Per-GPU-hour cost for the instance.
+    ClusterList:
+      type: object
+      properties:
+        clusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cluster'
+    CapacityList:
+      type: object
+      properties:
+        hardware_instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/HardwareInstance'
     Cluster:
       type: object
       properties:
@@ -80,13 +87,6 @@ components:
           type: string
         region:
           type: string
-    ClusterList:
-      type: object
-      properties:
-        clusters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Cluster'
   securitySchemes:
     bearerAuth:
       type: http
