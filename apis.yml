@@ -44,12 +44,14 @@ tags:
 - Inference
 - Serverless
 - GPU
+- Real-Time
 tags_raw:
 - AI
 - LLM
 - Inference
 - Serverless
 - GPU
+- Real-Time
 created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.23'

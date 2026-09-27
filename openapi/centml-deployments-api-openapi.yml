@@ -196,14 +196,26 @@ paths:
                 $ref: '#/components/schemas/DeploymentLogs'
 components:
   schemas:
-    DeploymentStatus:
+    CreateComputeDeploymentRequest:
+      type: object
+      required:
+      - name
+      - cluster_id
+      - hardware_instance_id
+      properties:
+        name:
+          type: string
+        cluster_id:
+          type: integer
+        hardware_instance_id:
+          type: integer
+    DeploymentList:
       type: object
       properties:
-        id:
-          type: integer
-        status:
-          type: string
-          description: The deployment status to read or set (e.g. running, paused, deleted).
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
     CreateInferenceDeploymentRequest:
       type: object
       required:
@@ -229,13 +241,20 @@ components:
         max_replicas:
           type: integer
           description: Maximum number of replicas for autoscaling.
-    DeploymentList:
+    DeploymentLogs:
       type: object
       properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Deployment'
+        logs:
+          type: string
+          description: Log output for the deployment.
+    DeploymentStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+          description: The deployment status to read or set (e.g. running, paused, deleted).
     Deployment:
       type: object
       properties:
@@ -257,25 +276,6 @@ components:
         endpoint_url:
           type: string
           description: The HTTPS endpoint URL once the deployment is ready.
-    CreateComputeDeploymentRequest:
-      type: object
-      required:
-      - name
-      - cluster_id
-      - hardware_instance_id
-      properties:
-        name:
-          type: string
-        cluster_id:
-          type: integer
-        hardware_instance_id:
-          type: integer
-    DeploymentLogs:
-      type: object
-      properties:
-        logs:
-          type: string
-          description: Log output for the deployment.
   securitySchemes:
     bearerAuth:
       type: http
