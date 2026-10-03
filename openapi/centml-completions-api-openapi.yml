@@ -41,15 +41,6 @@ paths:
                 $ref: '#/components/schemas/CreateCompletionResponse'
 components:
   schemas:
-    Usage:
-      type: object
-      properties:
-        prompt_tokens:
-          type: integer
-        completion_tokens:
-          type: integer
-        total_tokens:
-          type: integer
     CreateCompletionRequest:
       type: object
       required:
@@ -91,6 +82,15 @@ components:
           - 'null'
           items:
             type: string
+    Usage:
+      type: object
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
     CreateCompletionResponse:
       type: object
       required:

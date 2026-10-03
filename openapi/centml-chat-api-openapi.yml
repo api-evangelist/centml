@@ -104,48 +104,6 @@ components:
         name:
           type: string
           description: An optional name for the participant.
-    ChatCompletionChunk:
-      type: object
-      description: A streamed chunk of a chat completion (SSE), object chat.completion.chunk.
-      required:
-      - id
-      - object
-      - created
-      - model
-      - choices
-      properties:
-        id:
-          type: string
-        object:
-          type: string
-          enum:
-          - chat.completion.chunk
-        created:
-          type: integer
-        model:
-          type: string
-        choices:
-          type: array
-          items:
-            type: object
-            properties:
-              index:
-                type: integer
-              delta:
-                $ref: '#/components/schemas/ChatMessage'
-              finish_reason:
-                type:
-                - string
-                - 'null'
-    Usage:
-      type: object
-      properties:
-        prompt_tokens:
-          type: integer
-        completion_tokens:
-          type: integer
-        total_tokens:
-          type: integer
     CreateChatCompletionRequest:
       type: object
       required:
@@ -221,6 +179,48 @@ components:
         response_format:
           type: object
           description: An object specifying the format the model must output (e.g. JSON).
+    Usage:
+      type: object
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
+    ChatCompletionChunk:
+      type: object
+      description: A streamed chunk of a chat completion (SSE), object chat.completion.chunk.
+      required:
+      - id
+      - object
+      - created
+      - model
+      - choices
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          enum:
+          - chat.completion.chunk
+        created:
+          type: integer
+        model:
+          type: string
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              delta:
+                $ref: '#/components/schemas/ChatMessage'
+              finish_reason:
+                type:
+                - string
+                - 'null'
   securitySchemes:
     bearerAuth:
       type: http

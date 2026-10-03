@@ -51,13 +51,6 @@ paths:
                 $ref: '#/components/schemas/CapacityList'
 components:
   schemas:
-    ClusterList:
-      type: object
-      properties:
-        clusters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Cluster'
     HardwareInstance:
       type: object
       properties:
@@ -71,13 +64,6 @@ components:
         cost_per_hour:
           type: number
           description: Per-GPU-hour cost for the instance.
-    CapacityList:
-      type: object
-      properties:
-        hardware_instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/HardwareInstance'
     Cluster:
       type: object
       properties:
@@ -87,6 +73,20 @@ components:
           type: string
         region:
           type: string
+    CapacityList:
+      type: object
+      properties:
+        hardware_instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/HardwareInstance'
+    ClusterList:
+      type: object
+      properties:
+        clusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cluster'
   securitySchemes:
     bearerAuth:
       type: http
