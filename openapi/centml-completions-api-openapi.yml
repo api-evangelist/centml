@@ -41,6 +41,40 @@ paths:
                 $ref: '#/components/schemas/CreateCompletionResponse'
 components:
   schemas:
+    CreateCompletionResponse:
+      type: object
+      required:
+      - id
+      - object
+      - created
+      - model
+      - choices
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          enum:
+          - text_completion
+        created:
+          type: integer
+        model:
+          type: string
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              text:
+                type: string
+              finish_reason:
+                type:
+                - string
+                - 'null'
+        usage:
+          $ref: '#/components/schemas/Usage'
     CreateCompletionRequest:
       type: object
       required:
@@ -91,40 +125,6 @@ components:
           type: integer
         total_tokens:
           type: integer
-    CreateCompletionResponse:
-      type: object
-      required:
-      - id
-      - object
-      - created
-      - model
-      - choices
-      properties:
-        id:
-          type: string
-        object:
-          type: string
-          enum:
-          - text_completion
-        created:
-          type: integer
-        model:
-          type: string
-        choices:
-          type: array
-          items:
-            type: object
-            properties:
-              index:
-                type: integer
-              text:
-                type: string
-              finish_reason:
-                type:
-                - string
-                - 'null'
-        usage:
-          $ref: '#/components/schemas/Usage'
   securitySchemes:
     bearerAuth:
       type: http

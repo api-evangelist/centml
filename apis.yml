@@ -56,28 +56,6 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.23'
 apis:
-- aid: centml:centml-chat-api
-  name: CentML Chat API
-  description: The Chat API from CentML — 1 operation(s) for chat.
-  humanURL: https://docs.centml.ai/apps/serverless
-  baseURL: https://api.centml.com/openai/v1
-  tags:
-  - Chat
-  properties:
-  - type: OpenAPI
-    url: openapi/centml-chat-api-openapi.yml
-  - type: Documentation
-    url: https://docs.centml.ai/apps/serverless
-  - type: APIReference
-    url: https://docs.centml.ai/clients/sdk
-  - type: AsyncAPI
-    url: asyncapi/centml-asyncapi.yml
-  - type: Postman
-    url: collections/centml.postman_collection.json
-  - type: APIReference
-    url: https://centml.ai/models/
-  - type: Documentation
-    url: https://docs.centml.ai/apps/inference
 - aid: centml:centml-clusters-api
   name: CentML Clusters API
   description: The Clusters API from CentML — 2 operation(s) for clusters.
@@ -158,6 +136,28 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/centml-models-api-openapi.yml
+  - type: Documentation
+    url: https://docs.centml.ai/apps/serverless
+  - type: APIReference
+    url: https://docs.centml.ai/clients/sdk
+  - type: AsyncAPI
+    url: asyncapi/centml-asyncapi.yml
+  - type: Postman
+    url: collections/centml.postman_collection.json
+  - type: APIReference
+    url: https://centml.ai/models/
+  - type: Documentation
+    url: https://docs.centml.ai/apps/inference
+- aid: centml:centml-chat-completions-api
+  name: CentML Chat Completions API
+  description: The Chat Completions API from CentML — 1 operation(s) for chat completions.
+  humanURL: https://docs.centml.ai/apps/serverless
+  baseURL: https://api.centml.com/openai/v1
+  tags:
+  - Chat Completions
+  properties:
+  - type: OpenAPI
+    url: openapi/centml-chat-completions-api-openapi.yml
   - type: Documentation
     url: https://docs.centml.ai/apps/serverless
   - type: APIReference

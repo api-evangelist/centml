@@ -196,34 +196,6 @@ paths:
                 $ref: '#/components/schemas/DeploymentLogs'
 components:
   schemas:
-    DeploymentStatus:
-      type: object
-      properties:
-        id:
-          type: integer
-        status:
-          type: string
-          description: The deployment status to read or set (e.g. running, paused, deleted).
-    DeploymentList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Deployment'
-    CreateComputeDeploymentRequest:
-      type: object
-      required:
-      - name
-      - cluster_id
-      - hardware_instance_id
-      properties:
-        name:
-          type: string
-        cluster_id:
-          type: integer
-        hardware_instance_id:
-          type: integer
     CreateInferenceDeploymentRequest:
       type: object
       required:
@@ -270,12 +242,40 @@ components:
         endpoint_url:
           type: string
           description: The HTTPS endpoint URL once the deployment is ready.
+    DeploymentList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
+    CreateComputeDeploymentRequest:
+      type: object
+      required:
+      - name
+      - cluster_id
+      - hardware_instance_id
+      properties:
+        name:
+          type: string
+        cluster_id:
+          type: integer
+        hardware_instance_id:
+          type: integer
     DeploymentLogs:
       type: object
       properties:
         logs:
           type: string
           description: Log output for the deployment.
+    DeploymentStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+          description: The deployment status to read or set (e.g. running, paused, deleted).
   securitySchemes:
     bearerAuth:
       type: http

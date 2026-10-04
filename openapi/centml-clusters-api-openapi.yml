@@ -51,19 +51,6 @@ paths:
                 $ref: '#/components/schemas/CapacityList'
 components:
   schemas:
-    HardwareInstance:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          description: GPU instance type (e.g. A100, H100, L4).
-        gpu_count:
-          type: integer
-        cost_per_hour:
-          type: number
-          description: Per-GPU-hour cost for the instance.
     Cluster:
       type: object
       properties:
@@ -80,6 +67,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/HardwareInstance'
+    HardwareInstance:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: GPU instance type (e.g. A100, H100, L4).
+        gpu_count:
+          type: integer
+        cost_per_hour:
+          type: number
+          description: Per-GPU-hour cost for the instance.
     ClusterList:
       type: object
       properties:
