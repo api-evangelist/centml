@@ -10,7 +10,9 @@
     "centml-deployments-api-openapi.yml",
     "centml-models-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -21,10 +23,11 @@
     "centml-openapi.yml: declared missing tag: Completions",
     "centml-openapi.yml: declared missing tag: Deployments",
     "centml-openapi.yml: declared missing tag: Models",
-    "apis.yml register: already-registered"
+    "superseded outputs removed: centml-chat-completions-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 5 total)"
   ],
   "skipped": [
-    "centml-chat-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "centml-chat-completions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "centml-clusters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "centml-completions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "centml-deployments-api-openapi.yml: previously refined output, superseded by openapi/_original/",

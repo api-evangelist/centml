@@ -51,15 +51,6 @@ paths:
                 $ref: '#/components/schemas/CapacityList'
 components:
   schemas:
-    Cluster:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        region:
-          type: string
     CapacityList:
       type: object
       properties:
@@ -80,6 +71,15 @@ components:
         cost_per_hour:
           type: number
           description: Per-GPU-hour cost for the instance.
+    Cluster:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        region:
+          type: string
     ClusterList:
       type: object
       properties:

@@ -196,6 +196,55 @@ paths:
                 $ref: '#/components/schemas/DeploymentLogs'
 components:
   schemas:
+    CreateComputeDeploymentRequest:
+      type: object
+      required:
+      - name
+      - cluster_id
+      - hardware_instance_id
+      properties:
+        name:
+          type: string
+        cluster_id:
+          type: integer
+        hardware_instance_id:
+          type: integer
+    Deployment:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique deployment ID.
+        name:
+          type: string
+          description: Human-readable deployment name.
+        type:
+          type: string
+          description: Deployment type (inference, compute, or job).
+        status:
+          type: string
+          description: Current deployment status (e.g. running, paused, deleted).
+        cluster_id:
+          type: integer
+          description: The cluster the deployment is placed on.
+        endpoint_url:
+          type: string
+          description: The HTTPS endpoint URL once the deployment is ready.
+    DeploymentStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+          description: The deployment status to read or set (e.g. running, paused, deleted).
+    DeploymentList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
     CreateInferenceDeploymentRequest:
       type: object
       required:
@@ -221,61 +270,12 @@ components:
         max_replicas:
           type: integer
           description: Maximum number of replicas for autoscaling.
-    Deployment:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique deployment ID.
-        name:
-          type: string
-          description: Human-readable deployment name.
-        type:
-          type: string
-          description: Deployment type (inference, compute, or job).
-        status:
-          type: string
-          description: Current deployment status (e.g. running, paused, deleted).
-        cluster_id:
-          type: integer
-          description: The cluster the deployment is placed on.
-        endpoint_url:
-          type: string
-          description: The HTTPS endpoint URL once the deployment is ready.
-    DeploymentList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Deployment'
-    CreateComputeDeploymentRequest:
-      type: object
-      required:
-      - name
-      - cluster_id
-      - hardware_instance_id
-      properties:
-        name:
-          type: string
-        cluster_id:
-          type: integer
-        hardware_instance_id:
-          type: integer
     DeploymentLogs:
       type: object
       properties:
         logs:
           type: string
           description: Log output for the deployment.
-    DeploymentStatus:
-      type: object
-      properties:
-        id:
-          type: integer
-        status:
-          type: string
-          description: The deployment status to read or set (e.g. running, paused, deleted).
   securitySchemes:
     bearerAuth:
       type: http
