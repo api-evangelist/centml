@@ -22,3 +22,16 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: centml-vs-code-marketplace-vs-code-marketplace
+  label: VS Code Marketplace (vs-code-marketplace)
+  partner: vs-code-marketplace
+  partner_name: VS Code Marketplace (vs-code-marketplace)
+  category: IDE / developer extension marketplace listing
+  type: marketplace
+  marketplace: vs-code-marketplace
+  channel: partner-built
+  evidence: https://marketplace.visualstudio.com/publishers/CentML
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
