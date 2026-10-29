@@ -1,4 +1,4 @@
-# CentML (centml)
+# CentML
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,118 +66,141 @@
 
 CentML is an AI inference optimization platform that serves popular open models through OpenAI-compatible serverless endpoints and lets teams stand up dedicated, autoscaling model-serving deployments and compute clusters. The serverless inference API runs at https://api.centml.com/openai/v1 with Bearer API keys, while a separate platform (control-plane) API manages deployments and clusters.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/centml/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/centml/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · LLM · Inference · Serverless · GPU · Real-Time
 
-## Tags
+## CentML on APIs.io
 
-- AI
-- LLM
-- Inference
-- Serverless
-- GPU
+Everything profiled for CentML is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/centml/](https://apis.io/providers/centml/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [CentML Clusters API](https://apis.io/apis/centml/centml-clusters-api/) — The Clusters API from CentML — 2 operation(s) for clusters.
+- [CentML Completions API](https://apis.io/apis/centml/centml-completions-api/) — The Completions API from CentML — 1 operation(s) for completions.
+- [CentML Deployments API](https://apis.io/apis/centml/centml-deployments-api/) — The Deployments API from CentML — 6 operation(s) for deployments.
+- [CentML Models API](https://apis.io/apis/centml/centml-models-api/) — The Models API from CentML — 2 operation(s) for models.
+- [CentML Chat Completions API](https://apis.io/apis/centml/centml-chat-completions-api/) — The Chat Completions API from CentML — 1 operation(s) for chat completions.
 
-## APIs
+### Published properties
 
-### CentML Serverless Inference (Chat Completions) API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-OpenAI-compatible chat completions and text completions across open models (Llama, Qwen, DeepSeek, GPT OSS and others) running on CentML-optimized serverless GPU endpoints, with streaming, tool use, and structured outputs.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://docs.centml.ai/apps/serverless](https://docs.centml.ai/apps/serverless)
-- **Base URL:** `https://api.centml.com/openai/v1`
+Event-driven and webhook contracts.
 
-#### Tags
+- [CentML Chat Completions Streaming (HTTP + SSE)](https://apis.io/asyncapis/centml/centml-asyncapi/)
 
-- Chat
-- Completions
-- LLM
+#### Event channels (1)
 
-#### Properties
+Individual events and webhooks the provider emits.
 
-- [Documentation](https://docs.centml.ai/apps/serverless)
-- [API Reference](https://docs.centml.ai/clients/sdk)
-- [OpenAPI](openapi/centml-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [AsyncAPI](asyncapi/centml-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/centml.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/centml.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [/chat/completions](https://apis.io/channels/centml/chat-completions/)
 
-### CentML Models API
+#### Agentic access (1)
 
-Lists the models available on CentML's OpenAI-compatible serverless endpoints, returning model IDs that can be passed to the chat completions and completions endpoints.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://docs.centml.ai/apps/serverless](https://docs.centml.ai/apps/serverless)
-- **Base URL:** `https://api.centml.com/openai/v1`
+- [Centml Agentic Access](https://apis.io/agentic-access/centml/centml-agentic-access/)
 
-#### Tags
+#### Collections (6)
 
-- Models
-- Catalog
+Postman and Open Collection request collections.
 
-#### Properties
+- [CentML API](https://apis.io/collections/centml/open-centml/)
+- [CentML Chat API](https://apis.io/collections/centml/open-centml-chat-api/)
+- [CentML Chat Clusters API](https://apis.io/collections/centml/open-centml-clusters-api/)
+- [CentML Chat Completions API](https://apis.io/collections/centml/open-centml-completions-api/)
+- [CentML Chat Deployments API](https://apis.io/collections/centml/open-centml-deployments-api/)
+- [CentML Chat Models API](https://apis.io/collections/centml/open-centml-models-api/)
 
-- [Documentation](https://docs.centml.ai/apps/serverless)
-- [API Reference](https://centml.ai/models/)
-- [OpenAPI](openapi/centml-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/centml.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/centml.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (1)
 
-### CentML Deployments / Endpoints API
+Spectral rulesets for the provider's contracts.
 
-Platform (control-plane) API for creating and managing dedicated inference, compute, and job deployments — including create, retrieve, update, status, and logs — that expose models as autoscaling HTTPS endpoints.
+- [CentML — asyncapi rules](https://apis.io/rules/centml/centml-asyncapi-spectral-rules/)
 
-- **Human URL:** [https://docs.centml.ai/apps/inference](https://docs.centml.ai/apps/inference)
-- **Base URL:** `https://api.centml.com`
+#### Security (2)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Deployments
-- Endpoints
-- Platform
+- [Centml Authentication](https://apis.io/security/centml/centml-authentication/)
+- [Centml Domain Security](https://apis.io/security/centml/centml-domain-security/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://docs.centml.ai/apps/inference)
-- [API Reference](https://docs.centml.ai/clients/sdk)
-- [OpenAPI](openapi/centml-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/centml.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/centml.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-### CentML Clusters API
+- [Centml Plans Pricing](https://apis.io/plans/centml/centml-plans-pricing/)
 
-Platform (control-plane) API for listing regional clusters and GPU capacity available to place deployments on, used when selecting hardware and region for dedicated endpoints.
+#### Rate limits (1)
 
-- **Human URL:** [https://docs.centml.ai/apps/inference](https://docs.centml.ai/apps/inference)
-- **Base URL:** `https://api.centml.com`
+Published request limits.
 
-#### Tags
+- [Centml Rate Limits](https://apis.io/rate-limits/centml/centml-rate-limits/)
 
-- Clusters
-- Capacity
-- GPU
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://docs.centml.ai/apps/inference)
-- [API Reference](https://docs.centml.ai/clients/sdk)
-- [OpenAPI](openapi/centml-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/centml.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/centml.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Centml Finops](https://apis.io/finops/centml/centml-finops/)
 
-## Common Properties
+## Where to find this API
 
-- [GitHub Organization](https://github.com/CentML)
-- [LinkedIn](https://www.linkedin.com/company/centml)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://centml.ai/)
 - [Documentation](https://docs.centml.ai)
-- [Plans](plans/centml-plans-pricing.yml)
-- [Rate Limits](rate-limits/centml-rate-limits.yml)
-- [Fin Ops](finops/centml-finops.yml)
+- [GitHub](https://github.com/CentML)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 28.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 52.8 |
+| Contract governance | 11.4 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 29.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 19.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/centml/](https://apis.io/providers/centml/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CentML: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/centml/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
